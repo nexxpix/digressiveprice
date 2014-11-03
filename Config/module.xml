@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <fullnamespace>DigressivePrice\DigressivePrice</fullnamespace>
+    <descriptive locale="en_US">
+        <title>Digressive price</title>
+    </descriptive>
+    <descriptive locale="fr_FR">
+        <title>Prix dégressif</title>
+    </descriptive>
+    <version>1.0</version>
+    <author>
+        <name>Nexxpix</name>
+        <email>eperriere@nexxpix.fr</email>
+    </author>
+    <type>classic</type>
+    <thelia>2.0.0</thelia>
+    <stability>other</stability>
+</module>
