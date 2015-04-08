@@ -1,4 +1,5 @@
 {if {product attr="id"}}
+
 <div class="row" style="border-top: 1px dotted #a5ced8;border-bottom: 1px dotted #a5ced8;padding-bottom: 15px">
     <div class="col-md-12">
         <div class="row">
@@ -7,6 +8,13 @@
             </div>
         </div>
 
+        {flash type="msg"}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {$MESSAGE}
+        </div>
+        {/flash}
+
         {* List existing digressive prices for this product *}
         {loop type="digressive" name="prodDigressivePrices" product_id="{product attr="id"}"}
             <!-- Update digressive price -->
@@ -14,16 +22,16 @@
                 <div class="col-md-12">
                     <div class="row">
                         {form name="digressiveprice.update"}
-                        <form action="{url path='/admin/module/DigressivePrice/update'}" class="form-inline" role="form" {form_enctype form=$form}>
-                            {form_hidden_fields form=$form}
-                            
-                            {form_field form=$form field="id"}
-                                <input type="hidden" name="{$name}" value="{$ID}">
-                            {/form_field}
+                            <form action="{url path='/admin/module/DigressivePrice/update'}" class="form-inline" role="form" {form_enctype form=$form} method="post">
+                                {form_hidden_fields form=$form}
 
-                            {form_field form=$form field="productId"}
-                                <input type="hidden" name="{$name}" value="{$PRODUCT_ID}">
-                            {/form_field}
+                                {form_field form=$form field="id"}
+                                    <input type="hidden" name="{$name}" value="{$ID}">
+                                {/form_field}
+
+                                {form_field form=$form field="productId"}
+                                    <input type="hidden" name="{$name}" value="{$PRODUCT_ID}">
+                                {/form_field}
 
                                 <div class="col-md-1">
                                     <span style="line-height:32px"><b>{intl d="digressiveprice" l="Quantity"}</b></span>
@@ -74,25 +82,25 @@
                                 <div class="col-md-1">
                                     <button type="submit" class="btn btn-default">{intl d="digressiveprice" l="Update"}</button>
                                 </div>
-                        </form>
+                            </form>
                         {/form}
                         
                         {form name="digressiveprice.delete"}
-                        <form action="{url path='/admin/module/DigressivePrice/delete'}" role="form" {form_enctype form=$form}>
-                            {form_hidden_fields form=$form}
-                            
-                            {form_field form=$form field="productId"}
-                                <input type="hidden" name="{$name}" value="{$PRODUCT_ID}">
-                            {/form_field}
-                            
-                            {form_field form=$form field="id"}
-                                <input type="hidden" name="{$name}" value="{$ID}">
-                            {/form_field}
-                            
-                            <div class="col-md-1">
-                                <button type="submit" title="{intl d='digressiveprice' l='Remove'}" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
-                            </div>
-                        </form>
+                            <form action="{url path='/admin/module/DigressivePrice/delete'}" role="form" {form_enctype form=$form} method="post">
+                                {form_hidden_fields form=$form}
+
+                                {form_field form=$form field="productId"}
+                                    <input type="hidden" name="{$name}" value="{$PRODUCT_ID}">
+                                {/form_field}
+
+                                {form_field form=$form field="id"}
+                                    <input type="hidden" name="{$name}" value="{$ID}">
+                                {/form_field}
+
+                                <div class="col-md-1">
+                                    <button type="submit" title="{intl d='digressiveprice' l='Remove'}" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
+                                </div>
+                            </form>
                         {/form}
                     </div>
                 </div>
@@ -103,7 +111,7 @@
         <div class="row">
             <div class="col-md-12">
                 {form name="digressiveprice.create"}
-                    <form action="{url path='/admin/module/DigressivePrice/create'}" class="form-inline" role="form" {form_enctype form=$form}>
+                    <form action="{url path='/admin/module/DigressivePrice/create'}" class="form-inline" role="form" {form_enctype form=$form} method="post">
                         {form_hidden_fields form=$form}
                         
                         {form_field form=$form field="productId"}

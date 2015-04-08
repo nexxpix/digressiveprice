@@ -13,9 +13,15 @@
         <form name="digressiveprice.update" class="DigressivePrice\Form\UpdateDigressivePriceForm" />
         <form name="digressiveprice.delete" class="DigressivePrice\Form\DeleteDigressivePriceForm" />
     </forms>
+
+    <hooks>
+        <hook id="digressiveprice.hook" class="DigressivePrice\Hook\DigressivePriceHook" scope="request">
+            <tag name="hook.event_listener" event="product.tab-content" type="back"/>
+        </hook>
+    </hooks>
     
     <services>
-        <service id="digressiveprice.listener.cart_additem" class="DigressivePrice\Listener\CartAddListener" scope="request">
+        <service id="digressiveprice.listener" class="DigressivePrice\Listener\DigressivePriceListener" scope="request">
             <argument type="service" id="request"/>
             <tag name="kernel.event_subscriber"/>
         </service>

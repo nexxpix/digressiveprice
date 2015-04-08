@@ -3,6 +3,7 @@
 namespace DigressivePrice\Form;
 
 use Symfony\Component\Validator\Constraints;
+use Symfony\Component\Validator\ExecutionContextInterface;
 use Thelia\Form\BaseForm;
 
 /**
@@ -14,10 +15,16 @@ use Thelia\Form\BaseForm;
  */
 class CreateDigressivePriceForm extends BaseForm
 {
+    public function getName()
+    {
+        return "digressiveprice_create";
+    }
+
     protected function buildForm()
     {
         $this->formBuilder
-        ->add("productId", "number", array(
+        ->add(
+            "productId", "number", array(
                 "constraints" => array(
                     new Constraints\NotBlank()
                 )
@@ -31,7 +38,15 @@ class CreateDigressivePriceForm extends BaseForm
         )
         ->add("quantityTo", "number", array(
                 "constraints" => array(
-                    new Constraints\NotBlank()
+                    new Constraints\NotBlank(),
+                    new Constraints\Callback(
+                        array(
+                            "methods" => array(
+                                array($this,
+                                    "verifyIsGreater")
+                            )
+                        )
+                    )
                 )
             )
         )
@@ -49,8 +64,12 @@ class CreateDigressivePriceForm extends BaseForm
         );
     }
 
-    public function getName()
+    public function verifyIsGreater($value, ExecutionContextInterface $context)
     {
-        return "digressiveprice_create";
+        $quantityFrom = $this->getForm()->getData()['quantityFrom'];
+
+        if ($quantityFrom >= $value) {
+            $context->addViolation("The end of range must be greater than the beginning");
+        }
     }
 }

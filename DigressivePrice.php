@@ -16,6 +16,7 @@ use Thelia\Module\BaseModule;
 
 class DigressivePrice extends BaseModule
 {
+    const DOMAIN = 'digressiveprice';
     /*
      * You may now override BaseModuleInterface methods, such as:
      * install, destroy, preActivation, postActivation, preDeactivation, postDeactivation
