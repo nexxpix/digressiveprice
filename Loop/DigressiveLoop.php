@@ -26,12 +26,11 @@ use Thelia\Model\TaxRuleCountryQuery;
  */
 class DigressiveLoop extends BaseI18nLoop implements PropelSearchLoopInterface
 {
-
     public $countable = true;
 
     protected function getArgDefinitions()
     {
-        return new ArgumentCollection(Argument::createIntListTypeArgument('product_id'));
+        return new ArgumentCollection(Argument::createIntTypeArgument('product_id'));
     }
 
     public function buildModelCriteria()
@@ -60,12 +59,12 @@ class DigressiveLoop extends BaseI18nLoop implements PropelSearchLoopInterface
             $price = $digressivePrice->getPrice();
             $promo = $digressivePrice->getPromoPrice();
 
-            // get country
-            $country = CountryQuery::create()->findOneById(64);
+            // Get country
+            $taxCountry = $this->container->get('thelia.taxEngine')->getDeliveryCountry();
 
             // Get taxed prices
-            $taxedPrice = $product->getTaxedPrice($country, $price);
-            $taxedPromoPrice = $product->getTaxedPromoPrice($country, $promo);
+            $taxedPrice = $product->getTaxedPrice($taxCountry, $price);
+            $taxedPromoPrice = $product->getTaxedPromoPrice($taxCountry, $promo);
 
             $loopResultRow
                     ->set("ID", $digressivePrice->getId())

@@ -3,7 +3,7 @@
 namespace DigressivePrice\Form;
 
 use Symfony\Component\Validator\Constraints;
-use Thelia\Form\BaseForm;
+use Symfony\Component\Validator\ExecutionContextInterface;
 
 /**
  * Class UpdateDigressivePriceForm
@@ -12,53 +12,44 @@ use Thelia\Form\BaseForm;
  * @package DigressivePrice\Form
  * @author Nexxpix
  */
-class UpdateDigressivePriceForm extends BaseForm
+class UpdateDigressivePriceForm extends CreateDigressivePriceForm
 {
-
-    protected function buildForm()
-    {
-        $this->formBuilder
-        ->add("id", "number", array(
-                "constraints" => array(
-                    new Constraints\NotBlank()
-                )
-            )
-        )
-        ->add("productId", "number", array(
-                "constraints" => array(
-                    new Constraints\NotBlank()
-                )
-            )
-        )
-        ->add("quantityFrom", "number", array(
-                "constraints" => array(
-                    new Constraints\NotBlank()
-                )
-            )
-        )
-        ->add("quantityTo", "number", array(
-                "constraints" => array(
-                    new Constraints\NotBlank()
-                )
-            )
-        )
-        ->add("price", "number", array(
-                "constraints" => array(
-                    new Constraints\NotBlank()
-                )
-            )
-        )
-        ->add("promo", "number", array(
-                "constraints" => array(
-                    new Constraints\NotBlank()
-                )
-            )
-        );
-    }
-
     public function getName()
     {
         return "digressiveprice_update";
     }
+
+    protected function buildForm()
+    {
+        parent::buildForm(true);
+
+        $this->formBuilder
+        ->add(
+            "id",
+            "number",
+            array(
+                "constraints" => array(
+                    new Constraints\NotBlank()
+                ),
+                "label" => 'ID'
+            )
+        );
+    }
+
+    public function fromNotInRange($value, ExecutionContextInterface $context, $isUpdating = true)
+    {
+        parent::fromNotInRange($value, $context, $isUpdating);
+    }
+
+    public function toNotInRange($value, ExecutionContextInterface $context, $isUpdating = true)
+    {
+        parent::toNotInRange($value, $context, $isUpdating);
+    }
+
+    public function notSurround($value, ExecutionContextInterface $context, $isUpdating = true)
+    {
+        parent::notSurround($value, $context, $isUpdating);
+    }
+
 
 }
