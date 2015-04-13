@@ -7,18 +7,20 @@ use DigressivePrice\Event\DigressivePriceFullEvent;
 use DigressivePrice\Event\DigressivePriceIdEvent;
 use DigressivePrice\Model\DigressivePrice;
 use DigressivePrice\Model\DigressivePriceQuery;
+use Propel\Runtime\ActiveQuery\Criteria;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Thelia\Action\BaseAction;
 use Thelia\Core\Event\TheliaEvents;
 use Thelia\Core\Event\Cart\CartEvent;
 use Thelia\Core\Event\Product\ProductEvent;
+use Thelia\Model\ProductPriceQuery;
 
 /**
  * Class CartAddListener
  * Manage actions when adding a product to a pack
  * 
  * @package DigressivePrice\Listener
- * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
+ * @author Nexxpix
  */
 class DigressivePriceListener extends BaseAction implements EventSubscriberInterface
 {
@@ -48,27 +50,50 @@ class DigressivePriceListener extends BaseAction implements EventSubscriberInter
     }
 
     /**
+     * Set the good item's price when added to cart
+     *
      * @param CartEvent $event
      * @throws \Exception
      * @throws \Propel\Runtime\Exception\PropelException
      */
     public function itemAddedToCart(CartEvent $event)
     {
-        $productId = $event->getCartItem()->getProductId();
-        $quantity = $event->getCartItem()->getQuantity();
-        
+        $cartItem = $event->getCartItem();
+
+        // Check if the product has some digressive prices
+
         $dpq = DigressivePriceQuery::create()
-                ->filterByProductId($productId)
-                ->where('DigressivePrice.QuantityFrom <= ?', $quantity)
-                ->where('DigressivePrice.QuantityTo >= ?', $quantity)
+            ->findByProductId($cartItem->getProductId());
+
+        if (count($dpq) != 0) {
+
+            // Check if the quantity is into a range
+
+            $dpq = DigressivePriceQuery::create()
+                ->filterByProductId($cartItem->getProductId())
+                ->filterByQuantityFrom($cartItem->getQuantity(), Criteria::LESS_EQUAL)
+                ->filterByQuantityTo($cartItem->getQuantity(), Criteria::GREATER_EQUAL)
                 ->find();
 
-        if ($dpq->count() == 1) {
-            // Change cart item's prices
-            $cartItem = $event->getCartItem();
-            $cartItem->setPrice($dpq[0]->getPrice());
-            $cartItem->setPromoPrice($dpq[0]->getPromoPrice());
-            $cartItem->save();
+            if ($dpq->count() === 1) {
+
+                // Change cart item's prices with those from the corresponding range
+                $cartItem
+                    ->setPrice($dpq[0]->getPrice())
+                    ->setPromoPrice($dpq[0]->getPromoPrice())
+                    ->save();
+            } else {
+
+                // Change cart item's prices with the default out of range ones
+
+                $prices = ProductPriceQuery::create()
+                    ->findOneByProductSaleElementsId($cartItem->getProductSaleElementsId());
+
+                $cartItem
+                    ->setPrice($prices->getPrice())
+                    ->setPromoPrice($prices->getPromoPrice())
+                    ->save();
+            }
         }
     }
 
