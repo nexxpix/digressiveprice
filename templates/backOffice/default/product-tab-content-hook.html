@@ -1,11 +1,19 @@
 {if {product attr="id"}}
+
 <div class="row" style="border-top: 1px dotted #a5ced8;border-bottom: 1px dotted #a5ced8;padding-bottom: 15px">
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-12 title">
-                {intl d="digressiveprice" l="Digressive price"}
+                {intl d="digressiveprice.bo.default" l="Digressive price"}
             </div>
         </div>
+
+        {flash type="msg"}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {intl d="digressiveprice.bo.default" l=$MESSAGE}.
+        </div>
+        {/flash}
 
         {* List existing digressive prices for this product *}
         {loop type="digressive" name="prodDigressivePrices" product_id="{product attr="id"}"}
@@ -14,24 +22,24 @@
                 <div class="col-md-12">
                     <div class="row">
                         {form name="digressiveprice.update"}
-                        <form action="{url path='/admin/module/DigressivePrice/update'}" class="form-inline" role="form" {form_enctype form=$form}>
-                            {form_hidden_fields form=$form}
-                            
-                            {form_field form=$form field="id"}
-                                <input type="hidden" name="{$name}" value="{$ID}">
-                            {/form_field}
+                            <form action="{url path='/admin/module/DigressivePrice/update'}" class="form-inline" role="form" {form_enctype form=$form} method="post">
+                                {form_hidden_fields form=$form}
 
-                            {form_field form=$form field="productId"}
-                                <input type="hidden" name="{$name}" value="{$PRODUCT_ID}">
-                            {/form_field}
+                                {form_field form=$form field="id"}
+                                    <input type="hidden" name="{$name}" value="{$ID}">
+                                {/form_field}
+
+                                {form_field form=$form field="productId"}
+                                    <input type="hidden" name="{$name}" value="{$PRODUCT_ID}">
+                                {/form_field}
 
                                 <div class="col-md-1">
-                                    <span style="line-height:32px"><b>{intl d="digressiveprice" l="Quantity"}</b></span>
+                                    <span style="line-height:32px"><b>{intl d="digressiveprice.bo.default" l="Quantity"}</b></span>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <div class="input-group-addon">{intl d="digressiveprice" l="from"}</div>
+                                            <div class="input-group-addon">{intl d="digressiveprice.bo.default" l="from"}</div>
                                             {form_field form=$form field="quantityFrom"}
                                                 <input name="{$name}" value="{$QUANTITY_FROM}" class="form-control" type="number" required>
                                             {/form_field}
@@ -41,7 +49,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <div class="input-group-addon">{intl d="digressiveprice" l="to"}</div>
+                                            <div class="input-group-addon">{intl d="digressiveprice.bo.default" l="to"}</div>
                                             {form_field form=$form field="quantityTo"}
                                                 <input name="{$name}" value="{$QUANTITY_TO}" class="form-control" type="number" required>
                                             {/form_field}
@@ -49,12 +57,12 @@
                                     </div>
                                 </div>
                                 <div class="col-md-1">
-                                    <span style="line-height:32px"><b>{intl d="digressiveprice" l="Price (tax free)"}</b></span>
+                                    <span style="line-height:32px"><b>{intl d="digressiveprice.bo.default" l="Price w/o tax"}</b></span>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <div class="input-group-addon">{intl d="digressiveprice" l="Default"}</div>
+                                            <div class="input-group-addon">{intl d="digressiveprice.bo.default" l="Default"}</div>
                                             {form_field form=$form field="price"}
                                                 <input name="{$name}" value="{$PRICE}" class="form-control" type="number" required>
                                             {/form_field}
@@ -64,7 +72,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <div class="input-group-addon">{intl d="digressiveprice" l="Promo"}</div>
+                                            <div class="input-group-addon">{intl d="digressiveprice.bo.default" l="Promo"}</div>
                                             {form_field form=$form field="promo"}
                                                 <input name="{$name}" value="{$PROMO_PRICE}" class="form-control" type="number" required>
                                             {/form_field}
@@ -72,27 +80,27 @@
                                     </div>
                                 </div>
                                 <div class="col-md-1">
-                                    <button type="submit" class="btn btn-default">{intl d="digressiveprice" l="Update"}</button>
+                                    <button type="submit" class="btn btn-default">{intl d="digressiveprice.bo.default" l="Update"}</button>
                                 </div>
-                        </form>
+                            </form>
                         {/form}
                         
                         {form name="digressiveprice.delete"}
-                        <form action="{url path='/admin/module/DigressivePrice/delete'}" role="form" {form_enctype form=$form}>
-                            {form_hidden_fields form=$form}
-                            
-                            {form_field form=$form field="productId"}
-                                <input type="hidden" name="{$name}" value="{$PRODUCT_ID}">
-                            {/form_field}
-                            
-                            {form_field form=$form field="id"}
-                                <input type="hidden" name="{$name}" value="{$ID}">
-                            {/form_field}
-                            
-                            <div class="col-md-1">
-                                <button type="submit" title="{intl d='digressiveprice' l='Remove'}" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
-                            </div>
-                        </form>
+                            <form action="{url path='/admin/module/DigressivePrice/delete'}" role="form" {form_enctype form=$form} method="post">
+                                {form_hidden_fields form=$form}
+
+                                {form_field form=$form field="productId"}
+                                    <input type="hidden" name="{$name}" value="{$PRODUCT_ID}">
+                                {/form_field}
+
+                                {form_field form=$form field="id"}
+                                    <input type="hidden" name="{$name}" value="{$ID}">
+                                {/form_field}
+
+                                <div class="col-md-1">
+                                    <button type="submit" title="{intl d='digressiveprice.bo.default' l='Remove'}" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button>
+                                </div>
+                            </form>
                         {/form}
                     </div>
                 </div>
@@ -103,7 +111,7 @@
         <div class="row">
             <div class="col-md-12">
                 {form name="digressiveprice.create"}
-                    <form action="{url path='/admin/module/DigressivePrice/create'}" class="form-inline" role="form" {form_enctype form=$form}>
+                    <form action="{url path='/admin/module/DigressivePrice/create'}" class="form-inline" role="form" {form_enctype form=$form} method="post">
                         {form_hidden_fields form=$form}
                         
                         {form_field form=$form field="productId"}
@@ -112,12 +120,12 @@
                         
                         <div class="row">
                             <div class="col-md-1">
-                                <span style="line-height:32px"><b>{intl d="digressiveprice" l="Quantity"}</b></span>
+                                <span style="line-height:32px"><b>{intl d="digressiveprice.bo.default" l="Quantity"}</b></span>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon">{intl d="digressiveprice" l="from"}</div>
+                                        <div class="input-group-addon">{intl d="digressiveprice.bo.default" l="from"}</div>
                                         {form_field form=$form field="quantityFrom"}
                                             <input name="{$name}" class="form-control" type="number" required>
                                         {/form_field}
@@ -127,7 +135,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon">{intl d="digressiveprice" l="to"}</div>
+                                        <div class="input-group-addon">{intl d="digressiveprice.bo.default" l="to"}</div>
                                         {form_field form=$form field="quantityTo"}
                                             <input name="{$name}" class="form-control" type="number" required>
                                         {/form_field}
@@ -135,12 +143,12 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <span style="line-height:32px"><b>{intl d="digressiveprice" l="Price (tax free)"}</b></span>
+                                <span style="line-height:32px"><b>{intl d="digressiveprice.bo.default" l="Price w/o tax"}</b></span>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon">{intl d="digressiveprice" l="Default"}</div>
+                                        <div class="input-group-addon">{intl d="digressiveprice.bo.default" l="Default"}</div>
                                         {form_field form=$form field="price"}
                                             <input name="{$name}" class="form-control" type="number" required>
                                         {/form_field}
@@ -150,7 +158,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <div class="input-group-addon">{intl d="digressiveprice" l="Promo"}</div>
+                                        <div class="input-group-addon">{intl d="digressiveprice.bo.default" l="Promo"}</div>
                                         {form_field form=$form field="promo"}
                                             <input name="{$name}" class="form-control" type="number" required>
                                         {/form_field}
@@ -158,7 +166,7 @@
                                 </div>
                             </div>
                             <div class="col-md-1">
-                                <button type="submit" class="btn btn-default">{intl d="digressiveprice" l="Add"}</button>
+                                <button type="submit" class="btn btn-default">{intl d="digressiveprice.bo.default" l="Add"}</button>
                             </div>
                         </div>
                     </form>

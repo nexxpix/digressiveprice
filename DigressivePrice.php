@@ -13,13 +13,28 @@
 namespace DigressivePrice;
 
 use Thelia\Module\BaseModule;
+use Propel\Runtime\Connection\ConnectionInterface;
+use Thelia\Install\Database;
 
 class DigressivePrice extends BaseModule
 {
-    /*
-     * You may now override BaseModuleInterface methods, such as:
-     * install, destroy, preActivation, postActivation, preDeactivation, postDeactivation
-     *
-     * Have fun !
-     */
+    const DOMAIN = 'digressiveprice';
+
+    public function postActivation(ConnectionInterface $con = null)
+    {
+        parent::postActivation($con);
+        if (!is_null($con)) {
+            $database = new Database($con);
+            $database->insertSql(null, array(__DIR__ . '/Config/create.sql'));
+        }
+    }
+
+    public function destroy(ConnectionInterface $con = null, $deleteModuleData = false)
+    {
+        parent::destroy($con, $deleteModuleData);
+        if(!is_null($con) && $deleteModuleData === true) {
+            $database = new Database($con);
+            $database->insertSql(null, array(__DIR__ . '/Config/delete.sql'));
+        }
+    }
 }
