@@ -14,7 +14,6 @@ use Thelia\Core\Event\TheliaEvents;
 use Thelia\Core\Event\Cart\CartEvent;
 use Thelia\Core\Event\Product\ProductEvent;
 use Thelia\Model\ProductPriceQuery;
-use Thelia\Model\ProductQuery;
 
 /**
  * Class CartAddListener
@@ -79,7 +78,6 @@ class DigressivePriceListener extends BaseAction implements EventSubscriberInter
             if ($dpq->count() === 1) {
 
                 // Change cart item's prices with those from the corresponding range
-
                 $cartItem
                     ->setPrice($dpq[0]->getPrice())
                     ->setPromoPrice($dpq[0]->getPromoPrice())
