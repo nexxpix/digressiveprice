@@ -10,19 +10,13 @@ use Thelia\Core\Template\Loop\Argument\ArgumentCollection;
 use Thelia\Core\Template\Loop\Argument\Argument;
 use DigressivePrice\Model\DigressivePriceQuery;
 use Thelia\Model\ProductQuery;
-use Thelia\Model\CountryQuery;
-use Thelia\Model\TaxQuery;
-use Thelia\Model\TaxRule;
-use Thelia\Model\TaxRuleQuery;
-use Thelia\Model\TaxRuleCountry;
-use Thelia\Model\TaxRuleCountryQuery;
 
 /**
  * Class DigressiveLoop
  * Definition of the Digressive loop of DigressivePrice module
  * 
  * @package DigressivePrice\Loop
- * @author Nexxpix
+ * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
  */
 class DigressiveLoop extends BaseI18nLoop implements PropelSearchLoopInterface
 {

@@ -2,6 +2,11 @@
 
 namespace DigressivePrice\Event;
 
+/**
+ * Class DigressivePriceFullEvent
+ * @package DigressivePrice\Event
+ * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
+ */
 class DigressivePriceFullEvent extends DigressivePriceEvent {
 
     protected $id;

@@ -14,7 +14,7 @@ use Thelia\Form\BaseForm;
  * Build form to create a new digressive price
  * 
  * @package DigressivePrice\Form
- * @author Nexxpix
+ * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
  */
 class CreateDigressivePriceForm extends BaseForm
 {

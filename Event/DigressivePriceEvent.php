@@ -1,15 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 12620_000
- * Date: 02/04/2015
- * Time: 15:48
- */
 
 namespace DigressivePrice\Event;
 
 use Thelia\Core\Event\ActionEvent;
 
+/**
+ * Class DigressivePriceEvent
+ * @package DigressivePrice\Event
+ * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
+ */
 class DigressivePriceEvent extends ActionEvent {
 
     protected $productId;

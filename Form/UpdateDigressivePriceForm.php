@@ -10,7 +10,7 @@ use Symfony\Component\Validator\ExecutionContextInterface;
  * Build form to update a digressive price
  * 
  * @package DigressivePrice\Form
- * @author Nexxpix
+ * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
  */
 class UpdateDigressivePriceForm extends CreateDigressivePriceForm
 {

@@ -18,7 +18,7 @@ use Thelia\Core\Event\Product\ProductEvent;
  * Manage actions when adding a product to a pack
  * 
  * @package DigressivePrice\Listener
- * @author Nexxpix
+ * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
  */
 class DigressivePriceListener extends BaseAction implements EventSubscriberInterface
 {

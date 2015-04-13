@@ -18,7 +18,7 @@ use DigressivePrice\Form\DeleteDigressivePriceForm;
  * Manage actions of DigressivePrice module
  * 
  * @package DigressivePrice\Controller
- * @author Nexxpix
+ * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
  */
 class DigressivePriceController extends BaseAdminController
 {

@@ -11,7 +11,7 @@ use Thelia\Form\BaseForm;
  * Build form to delete a digressive price
  * 
  * @package DigressivePrice\Form
- * @author Nexxpix
+ * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
  */
 class DeleteDigressivePriceForm extends BaseForm
 {
