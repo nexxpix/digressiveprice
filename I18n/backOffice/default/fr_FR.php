@@ -1,22 +1,20 @@
 <?php
 return array(
+    // BO display
     'Digressive price' => 'Prix dégressif',
     'Quantity' => 'Quantité',
-    'from' => 'de',
-    'to' => 'à',
-    'Price' => 'Prix',
-    'Price w/o tax' => 'Prix HT',
-    'Default' => 'Défaut',
-    'Promo' => 'Promo',
+    'From' => 'De',
+    'To' => 'A',
+    'Price w/o taxes' => 'Prix HT',
+    'Sale price w/o taxes' => 'Prix promo HT',
+    'Add/Update' => 'Ajouter/Modifier',
     'Update' => 'Modifier',
     'Add' => 'Ajouter',
     'Remove' => 'Supprimer',
 
     // Form labels & errors
-    'Quantity : from' => 'Quantité : de',
-    'Quantity : to' => 'Quantité : à',
-    'default price' => 'prix',
-    'promo price' => 'prix promo',
+    'FROM {quantity}' => 'DE {quantité}',
+    'TO {quantity}' => 'A {quantité}',
     'product ID' => 'ID du produit',
     'The end of range must be greater than the beginning' => 'La quantité de fin de tranche doit être inférieure à celle de début',
     'Your new range surrounds an existing one' => 'Votre tranche de quantités en englobe une autre',

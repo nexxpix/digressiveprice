@@ -7,11 +7,12 @@ namespace DigressivePrice\Event;
  * @package DigressivePrice\Event
  * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
  */
-class DigressivePriceFullEvent extends DigressivePriceEvent {
+class DigressivePriceFullEvent extends DigressivePriceEvent
+{
 
     protected $id;
 
-    function __construct(
+    public function __construct(
         $id,
         $productId,
         $price,

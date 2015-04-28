@@ -9,11 +9,13 @@ use Thelia\Core\Event\ActionEvent;
  * @package DigressivePrice\Event
  * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
  */
-class DigressivePriceIdEvent extends ActionEvent {
+class DigressivePriceIdEvent extends ActionEvent
+{
 
     protected $id;
 
-    function __construct($id) {
+    public function __construct($id)
+    {
         $this->id = $id;
     }
 

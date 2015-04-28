@@ -9,7 +9,8 @@ use Thelia\Core\Event\ActionEvent;
  * @package DigressivePrice\Event
  * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
  */
-class DigressivePriceEvent extends ActionEvent {
+class DigressivePriceEvent extends ActionEvent
+{
 
     protected $productId;
     protected $price;
@@ -17,7 +18,7 @@ class DigressivePriceEvent extends ActionEvent {
     protected $quantityFrom;
     protected $quantityTo;
 
-    function __construct(
+    public function __construct(
         $productId,
         $price,
         $promoPrice,
@@ -110,6 +111,4 @@ class DigressivePriceEvent extends ActionEvent {
     {
         $this->quantityTo = $quantityTo;
     }
-
-
 }

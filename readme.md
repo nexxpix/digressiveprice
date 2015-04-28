@@ -10,6 +10,13 @@ Easily create and manage range of quantities with associated prices.
 * Copy the module into ```<thelia_root>/local/modules/``` directory and be sure that the name of the module is DigressivePrice.
 * Activate it in your thelia administration panel
 
+### Composer
+
+Add it in your main thelia composer.json file
+
+```
+composer require thelia/digressiveprice-module:~1.0
+```
 
 ## Usage
 

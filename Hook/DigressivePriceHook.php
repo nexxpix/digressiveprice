@@ -10,7 +10,8 @@ use Thelia\Core\Hook\BaseHook;
  * @package DigressivePrice\Hook
  * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
  */
-class DigressivePriceHook extends BaseHook {
+class DigressivePriceHook extends BaseHook
+{
 
     public function onProductTabContent(HookRenderEvent $event)
     {
