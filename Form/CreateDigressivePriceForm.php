@@ -151,8 +151,9 @@ class CreateDigressivePriceForm extends BaseForm
      */
     public function notSurround($value, ExecutionContextInterface $context, $isUpdating = false)
     {
-        // Check if the values are around FROM and TO quantities of an existing digressive price
+        // Check if the values are around FROM and TO quantities of an existing digressive price of the current product
         $digressivePricesQuery = DigressivePriceQuery::create()
+            ->filterByProductId($this->getForm()->getData()['productId'])
             ->filterByQuantityFrom($this->getForm()->getData()['quantityFrom'], Criteria::GREATER_EQUAL)
             ->filterByQuantityTo($value, Criteria::LESS_EQUAL);
 
@@ -178,17 +179,15 @@ class CreateDigressivePriceForm extends BaseForm
      */
     public function inRangeQuery($value, $isUpdating)
     {
-        // Check if the value is between FROM and TO quantities of an existing digressive price
+        // Check if the value is between FROM and TO quantities of an existing digressive price of the current product
         $digressivePricesQuery = DigressivePriceQuery::create()
+            ->filterByProductId($this->getForm()->getData()['productId'])
             ->filterByQuantityFrom($value, Criteria::LESS_EQUAL)
             ->filterByQuantityTo($value, Criteria::GREATER_EQUAL);
 
         // If it's an update, don't check itself
         if ($isUpdating) {
             $digressivePricesQuery->filterById($this->getForm()->getData()['id'], Criteria::NOT_IN);
-        } else {
-            // Else it's a new one, so we only check for the current product
-            $digressivePricesQuery->filterByProductId($this->getForm()->getData()['productId']);
         }
 
         return $digressivePricesQuery->find();
