@@ -32,7 +32,7 @@ class DigressivePrice extends BaseModule
     public function destroy(ConnectionInterface $con = null, $deleteModuleData = false)
     {
         parent::destroy($con, $deleteModuleData);
-        if(!is_null($con) && $deleteModuleData === true) {
+        if (!is_null($con) && $deleteModuleData === true) {
             $database = new Database($con);
             $database->insertSql(null, array(__DIR__ . '/Config/delete.sql'));
         }

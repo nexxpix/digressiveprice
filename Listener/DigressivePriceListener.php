@@ -18,7 +18,7 @@ use Thelia\Model\ProductPriceQuery;
 /**
  * Class CartAddListener
  * Manage actions when adding a product to a pack
- * 
+ *
  * @package DigressivePrice\Listener
  * @author Nexxpix
  */

@@ -14,7 +14,7 @@ use Thelia\Model\ProductQuery;
 /**
  * Class DigressiveLoop
  * Definition of the Digressive loop of DigressivePrice module
- * 
+ *
  * @package DigressivePrice\Loop
  * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
  */
@@ -42,7 +42,6 @@ class DigressiveLoop extends BaseI18nLoop implements PropelSearchLoopInterface
     public function parseResults(LoopResult $loopResult)
     {
         foreach ($loopResult->getResultDataCollection() as $digressivePrice) {
-
             $loopResultRow = new LoopResultRow($digressivePrice);
 
             // Get product
@@ -75,5 +74,4 @@ class DigressiveLoop extends BaseI18nLoop implements PropelSearchLoopInterface
 
         return $loopResult;
     }
-
 }

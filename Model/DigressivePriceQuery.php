@@ -4,7 +4,6 @@ namespace DigressivePrice\Model;
 
 use DigressivePrice\Model\Base\DigressivePriceQuery as BaseDigressivePriceQuery;
 
-
 /**
  * Skeleton subclass for performing query and update operations on the 'digressive_price' table.
  *
@@ -17,5 +16,4 @@ use DigressivePrice\Model\Base\DigressivePriceQuery as BaseDigressivePriceQuery;
  */
 class DigressivePriceQuery extends BaseDigressivePriceQuery
 {
-
 } // DigressivePriceQuery

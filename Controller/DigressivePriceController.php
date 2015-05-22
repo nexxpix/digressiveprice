@@ -16,7 +16,7 @@ use DigressivePrice\Form\DeleteDigressivePriceForm;
 /**
  * Class DigressivePriceController
  * Manage actions of DigressivePrice module
- * 
+ *
  * @package DigressivePrice\Controller
  * @author Etienne PERRIERE <eperriere@openstudio.fr> - Nexxpix - OpenStudio
  */
@@ -56,8 +56,7 @@ class DigressivePriceController extends BaseAdminController
                     'current_tab' => 'modules'
                 )
             );
-        }
-        catch (FormValidationException $e) {
+        } catch (FormValidationException $e) {
             throw new \Exception($this->createStandardFormValidationErrorMessage($e));
         }
     }
@@ -97,8 +96,7 @@ class DigressivePriceController extends BaseAdminController
                     'current_tab' => 'modules'
                 )
             );
-        }
-        catch (FormValidationException $e) {
+        } catch (FormValidationException $e) {
             throw new \Exception($this->createStandardFormValidationErrorMessage($e));
         }
     }

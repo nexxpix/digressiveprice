@@ -14,7 +14,6 @@ use Propel\Runtime\Map\RelationMap;
 use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Map\TableMapTrait;
 
-
 /**
  * This class defines the structure of the 'digressive_price' table.
  *
@@ -111,7 +110,7 @@ class DigressivePriceTableMap extends TableMap
      * first dimension keys are the type constants
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
-    protected static $fieldNames = array (
+    protected static $fieldNames = array(
         self::TYPE_PHPNAME       => array('Id', 'ProductId', 'Price', 'PromoPrice', 'QuantityFrom', 'QuantityTo', ),
         self::TYPE_STUDLYPHPNAME => array('id', 'productId', 'price', 'promoPrice', 'quantityFrom', 'quantityTo', ),
         self::TYPE_COLNAME       => array(DigressivePriceTableMap::ID, DigressivePriceTableMap::PRODUCT_ID, DigressivePriceTableMap::PRICE, DigressivePriceTableMap::PROMO_PRICE, DigressivePriceTableMap::QUANTITY_FROM, DigressivePriceTableMap::QUANTITY_TO, ),
@@ -126,7 +125,7 @@ class DigressivePriceTableMap extends TableMap
      * first dimension keys are the type constants
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
-    protected static $fieldKeys = array (
+    protected static $fieldKeys = array(
         self::TYPE_PHPNAME       => array('Id' => 0, 'ProductId' => 1, 'Price' => 2, 'PromoPrice' => 3, 'QuantityFrom' => 4, 'QuantityTo' => 5, ),
         self::TYPE_STUDLYPHPNAME => array('id' => 0, 'productId' => 1, 'price' => 2, 'promoPrice' => 3, 'quantityFrom' => 4, 'quantityTo' => 5, ),
         self::TYPE_COLNAME       => array(DigressivePriceTableMap::ID => 0, DigressivePriceTableMap::PRODUCT_ID => 1, DigressivePriceTableMap::PRICE => 2, DigressivePriceTableMap::PROMO_PRICE => 3, DigressivePriceTableMap::QUANTITY_FROM => 4, DigressivePriceTableMap::QUANTITY_TO => 5, ),
@@ -202,8 +201,7 @@ class DigressivePriceTableMap extends TableMap
      */
     public static function getPrimaryKeyFromRow($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
-
-            return (int) $row[
+        return (int) $row[
                             $indexType == TableMap::TYPE_NUM
                             ? 0 + $offset
                             : self::translateFieldName('Id', TableMap::TYPE_PHPNAME, $indexType)
@@ -338,10 +336,10 @@ class DigressivePriceTableMap extends TableMap
      */
     public static function buildTableMap()
     {
-      $dbMap = Propel::getServiceContainer()->getDatabaseMap(DigressivePriceTableMap::DATABASE_NAME);
-      if (!$dbMap->hasTable(DigressivePriceTableMap::TABLE_NAME)) {
-        $dbMap->addTableObject(new DigressivePriceTableMap());
-      }
+        $dbMap = Propel::getServiceContainer()->getDatabaseMap(DigressivePriceTableMap::DATABASE_NAME);
+        if (!$dbMap->hasTable(DigressivePriceTableMap::TABLE_NAME)) {
+            $dbMap->addTableObject(new DigressivePriceTableMap());
+        }
     }
 
     /**
@@ -357,31 +355,33 @@ class DigressivePriceTableMap extends TableMap
      */
      public static function doDelete($values, ConnectionInterface $con = null)
      {
-        if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(DigressivePriceTableMap::DATABASE_NAME);
-        }
+         if (null === $con) {
+             $con = Propel::getServiceContainer()->getWriteConnection(DigressivePriceTableMap::DATABASE_NAME);
+         }
 
-        if ($values instanceof Criteria) {
-            // rename for clarity
+         if ($values instanceof Criteria) {
+             // rename for clarity
             $criteria = $values;
-        } elseif ($values instanceof \DigressivePrice\Model\DigressivePrice) { // it's a model object
+         } elseif ($values instanceof \DigressivePrice\Model\DigressivePrice) { // it's a model object
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
-        } else { // it's a primary key, or an array of pks
+         } else { // it's a primary key, or an array of pks
             $criteria = new Criteria(DigressivePriceTableMap::DATABASE_NAME);
-            $criteria->add(DigressivePriceTableMap::ID, (array) $values, Criteria::IN);
-        }
+             $criteria->add(DigressivePriceTableMap::ID, (array) $values, Criteria::IN);
+         }
 
-        $query = DigressivePriceQuery::create()->mergeWith($criteria);
+         $query = DigressivePriceQuery::create()->mergeWith($criteria);
 
-        if ($values instanceof Criteria) { DigressivePriceTableMap::clearInstancePool();
-        } elseif (!is_object($values)) { // it's a primary key, or an array of pks
-            foreach ((array) $values as $singleval) { DigressivePriceTableMap::removeInstanceFromPool($singleval);
+         if ($values instanceof Criteria) {
+             DigressivePriceTableMap::clearInstancePool();
+         } elseif (!is_object($values)) { // it's a primary key, or an array of pks
+            foreach ((array) $values as $singleval) {
+                DigressivePriceTableMap::removeInstanceFromPool($singleval);
             }
-        }
+         }
 
-        return $query->delete($con);
-    }
+         return $query->delete($con);
+     }
 
     /**
      * Deletes all rows from the digressive_price table.
@@ -415,7 +415,7 @@ class DigressivePriceTableMap extends TableMap
             $criteria = $criteria->buildCriteria(); // build Criteria from DigressivePrice object
         }
 
-        if ($criteria->containsKey(DigressivePriceTableMap::ID) && $criteria->keyContainsValue(DigressivePriceTableMap::ID) ) {
+        if ($criteria->containsKey(DigressivePriceTableMap::ID) && $criteria->keyContainsValue(DigressivePriceTableMap::ID)) {
             throw new PropelException('Cannot insert a value for auto-increment primary key ('.DigressivePriceTableMap::ID.')');
         }
 
@@ -436,7 +436,6 @@ class DigressivePriceTableMap extends TableMap
 
         return $pk;
     }
-
 } // DigressivePriceTableMap
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
