@@ -23,20 +23,22 @@ composer require thelia/digressiveprice-module:~1.0
 Once activated, go into the Modules tab of the product you want to add a digressive price to.
 You can create a new range, edit or remove an existing one.
 Fill the form with following information :
+
 - Quantity
     - from : the quantity which begins your range
     - to : the quantity that ends you range.
 - Price
     - default : the tax free price of the product when the quantity is in the defined range
     - promo : the tax free promo price of the product
+
 Then click the "Add" or "Update" button.
 
 Take care of the following :
+
 - "quantity to" has to be greater than or equal to "quantity from"
 - a quantity ('from' and/or 'to') can't be included into another range
 - a range can't surround another one
 - a quantity can't be negative
--
 
 Once created, you have to integrate it to you front office thanks to the loop described later on.
 
@@ -76,6 +78,7 @@ The Hook used is called "product.tab-content".
 
 This example displays the product prices according to all the quantity's ranges
 
+```html
 <table>
     <tr>
         <th>Quantity</th>
@@ -119,6 +122,7 @@ This example displays the product prices according to all the quantity's ranges
         {/if}
     {/loop}
 </table>
+```
 
 ## Other ?
 
